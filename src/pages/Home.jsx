@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import HeroSection from '../components/sections/HeroSection';
-import TrustBar from '../components/sections/TrustBar';
 import ServicesSection from '../components/sections/ServicesSection';
 import AboutSection from '../components/sections/AboutSection';
 import IndustriesSection from '../components/sections/IndustriesSection';
@@ -21,7 +20,6 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <TrustBar />
       <ServicesSection />
       <AboutSection />
       <IndustriesSection />

@@ -1,11 +1,6 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import AnimatedCounter from '../ui/AnimatedCounter';
 import RevealAnimation from '../ui/RevealAnimation';
 import LaserLine from '../ui/LaserLine';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
   { value: 40, suffix: '+', label: 'Years Experience' },
@@ -15,29 +10,8 @@ const stats = [
 ];
 
 export default function AboutSection() {
-  const sectionRef = useRef(null);
-  const contentRef = useRef(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(contentRef.current, {
-        x: 60,
-        opacity: 0,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 70%',
-          toggleActions: 'play none none reverse',
-        },
-      });
-    });
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section ref={sectionRef} className="section-padding bg-section-alt relative overflow-hidden">
+    <section className="section-padding bg-section-alt relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,_rgba(0,194,255,0.03)_0%,_transparent_60%)]" />
       <div className="container-wide relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -61,11 +35,12 @@ export default function AboutSection() {
             </div>
           </RevealAnimation>
 
-          <div ref={contentRef}>
-            <span className="text-accent text-sm font-semibold tracking-[0.2em] uppercase mb-4 block">
-              About Hallmarks
-            </span>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight">
+          <RevealAnimation direction="right">
+            <div>
+              <span className="text-accent text-sm font-semibold tracking-[0.2em] uppercase mb-4 block">
+                About Hallmarks
+              </span>
+              <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight">
               Precision, Durability<br /><span className="text-gradient">&amp; Performance</span>
             </h2>
             <LaserLine />
@@ -84,8 +59,8 @@ export default function AboutSection() {
               ))}
             </div>
           </div>
+          </RevealAnimation>
         </div>
-      </div>
     </section>
   );
 }

@@ -1,16 +1,11 @@
-import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { HiStar } from 'react-icons/hi';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SectionTitle from '../ui/SectionTitle';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const testimonialsData = [
   { name: 'Robert Kline', company: 'Aerospace Dynamics Corp', quote: 'Hallmarks Laser Imaging has been our trusted partner for identification solutions for over 15 years. Their precision and quality are unmatched in the industry.' },
@@ -22,28 +17,8 @@ const testimonialsData = [
 ];
 
 export default function TestimonialsSection() {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(sectionRef.current, {
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-          toggleActions: 'play none none reverse',
-        },
-      });
-    });
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section ref={sectionRef} className="section-padding bg-bg-dark relative overflow-hidden">
+    <section className="section-padding bg-bg-dark relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(0,194,255,0.03)_0%,_transparent_70%)]" />
       <div className="container-wide relative z-10">
         <SectionTitle
