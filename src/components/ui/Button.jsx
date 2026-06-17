@@ -1,7 +1,39 @@
-import { forwardRef } from 'react';
+import { useRef } from 'react';
+import { motion } from 'framer-motion';
 import { cn } from '../../utils/animations';
 
-const Button = forwardRef(({ children, variant = 'primary', size = 'md', href, className, ...props }, ref) => {
+const MagneticWrapper = ({ children, className }) => {
+  const ref = useRef(null);
+
+  const handleMouse = (e) => {
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    el.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+  };
+
+  const handleReset = () => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.transform = 'translate(0px, 0px)';
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMouse}
+      onMouseLeave={handleReset}
+      className={className}
+      style={{ transition: 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+const Button = ({ children, variant = 'primary', size = 'md', href, className, ...props }) => {
   const baseStyles = 'relative inline-flex items-center justify-center font-semibold transition-all duration-300 overflow-hidden group cursor-pointer border-none outline-none';
 
   const variants = {
@@ -28,20 +60,15 @@ const Button = forwardRef(({ children, variant = 'primary', size = 'md', href, c
     </>
   );
 
-  if (href) {
-    return (
-      <a href={href} className={classes} ref={ref} {...props}>
-        {content}
-      </a>
-    );
-  }
+  const Tag = href ? 'a' : 'button';
 
   return (
-    <button className={classes} ref={ref} {...props}>
-      {content}
-    </button>
+    <MagneticWrapper>
+      <Tag href={href} className={classes} {...props}>
+        {content}
+      </Tag>
+    </MagneticWrapper>
   );
-});
+};
 
-Button.displayName = 'Button';
 export default Button;
