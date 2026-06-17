@@ -6,6 +6,7 @@ export default function CustomCursor() {
 
   useEffect(() => {
     if (window.matchMedia('(pointer: coarse)').matches) return;
+    document.body.style.cursor = 'none';
 
     let rafId;
     let mouseX = 0, mouseY = 0;
@@ -47,6 +48,7 @@ export default function CustomCursor() {
     rafId = requestAnimationFrame(animate);
 
     return () => {
+      document.body.style.cursor = '';
       document.removeEventListener('mousemove', onMove);
       document.removeEventListener('mouseover', onOver);
       document.removeEventListener('mouseout', onOut);
