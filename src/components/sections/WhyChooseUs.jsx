@@ -30,7 +30,7 @@ export default function WhyChooseUs() {
         scrollTrigger: {
           trigger: featuresRef.current,
           start: 'top 80%',
-          toggleActions: 'play none none reverse',
+          toggleActions: 'play none none none',
         },
       });
 
@@ -42,7 +42,7 @@ export default function WhyChooseUs() {
         scrollTrigger: {
           trigger: imageRef.current,
           start: 'top 80%',
-          toggleActions: 'play none none reverse',
+          toggleActions: 'play none none none',
         },
       });
     });

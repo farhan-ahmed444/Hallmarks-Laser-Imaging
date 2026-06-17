@@ -9,7 +9,7 @@ export default function AnimatedCounter({ value, suffix = '', label, className =
     <div className={`text-center ${className}`}>
       <span
         ref={ref}
-        className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white block mb-2"
+        className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white block mb-1"
       >
         0{suffix}
       </span>

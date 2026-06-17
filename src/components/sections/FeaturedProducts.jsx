@@ -39,7 +39,7 @@ export default function FeaturedProducts() {
         scrollTrigger: {
           trigger: productsRef.current,
           start: 'top 80%',
-          toggleActions: 'play none none reverse',
+          toggleActions: 'play none none none',
         },
       });
     });

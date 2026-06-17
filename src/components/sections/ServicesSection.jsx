@@ -3,18 +3,18 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { HiArrowRight, HiOutlineSparkles, HiOutlineTag, HiOutlineShieldCheck, HiOutlineClipboardList, HiOutlineCog, HiOutlineCube } from 'react-icons/hi';
+import { HiArrowRight, HiSparkles, HiTag, HiShieldCheck, HiClipboardList, HiCog, HiCube } from 'react-icons/hi';
 import SectionTitle from '../ui/SectionTitle';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const iconMap = [
-  HiOutlineSparkles,
-  HiOutlineTag,
-  HiOutlineShieldCheck,
-  HiOutlineClipboardList,
-  HiOutlineCog,
-  HiOutlineCube,
+  HiSparkles,
+  HiTag,
+  HiShieldCheck,
+  HiClipboardList,
+  HiCog,
+  HiCube,
 ];
 
 const servicesData = [
@@ -70,7 +70,7 @@ export default function ServicesSection() {
         scrollTrigger: {
           trigger: cardsRef.current,
           start: 'top 80%',
-          toggleActions: 'play none none reverse',
+          toggleActions: 'play none none none',
         },
       });
     });

@@ -34,7 +34,7 @@ export default function ManufacturingCapability() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top 75%',
-          toggleActions: 'play none none reverse',
+          toggleActions: 'play none none none',
         },
       });
     });

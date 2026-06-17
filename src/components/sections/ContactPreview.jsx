@@ -47,7 +47,7 @@ export default function ContactPreview() {
               </p>
             </RevealAnimation>
 
-            <div className="space-y-5">
+            <div className="grid grid-cols-2 gap-5">
               {contactInfo.map((item, i) => (
                 <motion.a
                   key={i}
