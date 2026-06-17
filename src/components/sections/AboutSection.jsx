@@ -61,6 +61,7 @@ export default function AboutSection() {
           </div>
           </RevealAnimation>
         </div>
+      </div>
     </section>
   );
 }
