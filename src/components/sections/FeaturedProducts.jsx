@@ -11,6 +11,15 @@ gsap.registerPlugin(ScrollTrigger);
 
 const categories = ['All', 'Nameplates', 'Labels', 'Tags', 'Panels'];
 
+const productImages = [
+  'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&q=80',
+  'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&q=80',
+  'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&q=80',
+  'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&q=80',
+  'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&q=80',
+  'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&q=80',
+];
+
 export default function FeaturedProducts() {
   const [activeCategory, setActiveCategory] = useState('All');
   const productsRef = useRef(null);
@@ -51,10 +60,10 @@ export default function FeaturedProducts() {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all ${
+              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
                 activeCategory === cat
-                  ? 'bg-accent text-primary'
-                  : 'bg-section-alt text-body border border-border hover:border-accent/30'
+                  ? 'bg-accent text-primary shadow-lg shadow-accent/25'
+                  : 'bg-section-alt text-body border border-border hover:border-accent/30 hover:text-accent'
               }`}
             >
               {cat}
@@ -64,7 +73,7 @@ export default function FeaturedProducts() {
 
         <div ref={productsRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatePresence mode="wait">
-            {filtered.map((product) => (
+            {filtered.map((product, i) => (
               <motion.div
                 key={product.id}
                 layout
@@ -76,19 +85,19 @@ export default function FeaturedProducts() {
                 <Card3D className="group h-full">
                   <div className="relative h-full p-6 rounded-2xl bg-section-alt border border-border hover:border-accent/30 transition-all duration-500 overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="absolute -top-20 -right-20 w-40 h-40 bg-accent/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute -top-20 -right-20 w-40 h-40 bg-accent/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                     <div className="relative z-10">
                       <div className="aspect-[4/3] rounded-xl overflow-hidden mb-5 bg-secondary/50 border border-border">
                         <div
                           className="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-700"
-                          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&q=80')` }}
+                          style={{ backgroundImage: `url('${productImages[i % productImages.length]}')` }}
                         />
                       </div>
-                      <span className="text-xs text-accent font-semibold tracking-wider uppercase">
+                      <span className="inline-block text-xs text-accent font-semibold tracking-wider uppercase bg-accent/10 border border-accent/20 rounded-full px-3 py-1 mb-3">
                         {product.category}
                       </span>
-                      <h3 className="text-lg font-bold text-white mt-2 mb-2 group-hover:text-accent transition-colors">
+                      <h3 className="text-lg font-bold text-white mt-1 mb-2 group-hover:text-accent transition-colors">
                         {product.title}
                       </h3>
                       <p className="text-body/70 text-sm leading-relaxed">

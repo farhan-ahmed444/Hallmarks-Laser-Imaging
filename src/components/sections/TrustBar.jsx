@@ -7,7 +7,7 @@ import { trustBarData } from '../../data';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const icons = {
+const iconMap = {
   precision: HiBadgeCheck,
   speed: HiClock,
   custom: HiCog,
@@ -42,19 +42,19 @@ export default function TrustBar() {
   return (
     <section ref={sectionRef} className="py-12 bg-section-alt border-y border-border">
       <div className="container-wide">
-        <div ref={counterRef} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        <div ref={counterRef} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {trustBarData.map((item, i) => {
-            const Icon = icons[item.icon] || HiBadgeCheck;
+            const Icon = iconMap[item.icon] || HiBadgeCheck;
             return (
               <motion.div
                 key={i}
                 className="flex items-center gap-3 p-4 rounded-xl hover:bg-secondary/30 transition-all group cursor-default"
-                whileHover={{ x: 5 }}
+                whileHover={{ x: 5, scale: 1.02 }}
               >
-                <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center shrink-0 group-hover:bg-accent/20 transition-all">
-                  <Icon className="w-5 h-5 text-accent" />
+                <div className="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0 group-hover:bg-accent/20 group-hover:scale-110 transition-all">
+                  <Icon className="w-6 h-6 text-accent" />
                 </div>
-                <span className="text-white text-sm font-semibold">{item.label}</span>
+                <span className="text-white text-sm font-semibold leading-tight">{item.label}</span>
               </motion.div>
             );
           })}

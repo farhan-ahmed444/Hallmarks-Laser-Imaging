@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
-import { HiArrowRight, HiShieldCheck, HiClock, HiCog, HiBadgeCheck } from 'react-icons/hi';
+import { HiArrowRight, HiBadgeCheck, HiClock, HiCog, HiShieldCheck } from 'react-icons/hi';
 import Button from '../ui/Button';
 
 const metrics = [
@@ -9,6 +9,13 @@ const metrics = [
   { icon: HiClock, label: 'Fast Turnaround' },
   { icon: HiCog, label: 'Custom Manufacturing' },
   { icon: HiShieldCheck, label: 'Quality Assured' },
+];
+
+const floatingCards = [
+  { title: 'Metal Nameplates', subtitle: 'Precision Engraved', color: 'from-accent/20 via-accent/5 to-transparent', delay: 1.0 },
+  { title: 'Asset Tags', subtitle: 'Barcode & RFID', color: 'from-accent/15 via-highlight/5 to-transparent', delay: 1.15 },
+  { title: 'Barcode Labels', subtitle: 'Industrial Grade', color: 'from-accent/20 via-accent/5 to-transparent', delay: 1.3 },
+  { title: 'Engraved Parts', subtitle: 'Micron Accuracy', color: 'from-accent/15 via-highlight/5 to-transparent', delay: 1.45 },
 ];
 
 export default function HeroSection() {
@@ -66,10 +73,10 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(0,194,255,0.08)_0%,_transparent_70%)]" />
       </div>
 
-      <div ref={laserRef} className="absolute top-1/3 left-0 w-32 h-px bg-accent/60 blur-sm" />
+      <div ref={laserRef} className="absolute top-1/3 left-0 w-40 h-px bg-accent/60 blur-sm" />
 
       <div className="container-wide relative z-20 pt-32 pb-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <div ref={headlineRef}>
               <span className="inline-block text-accent text-sm font-semibold tracking-[0.2em] uppercase mb-6 border border-accent/20 rounded-full px-4 py-1.5">
@@ -97,25 +104,26 @@ export default function HeroSection() {
 
           <div className="hidden lg:block">
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-transparent rounded-2xl blur-3xl" />
+              <div className="absolute -inset-4 bg-gradient-to-r from-accent/10 to-transparent rounded-3xl blur-3xl" />
               <div className="relative grid grid-cols-2 gap-4">
-                {[
-                  { title: 'Metal Nameplates', color: 'from-accent/30 to-transparent' },
-                  { title: 'Asset Tags', color: 'from-highlight/30 to-transparent' },
-                  { title: 'Barcode Labels', color: 'from-accent/20 to-transparent' },
-                  { title: 'Engraved Parts', color: 'from-highlight/20 to-transparent' },
-                ].map((card, i) => (
+                {floatingCards.map((card, i) => (
                   <motion.div
                     key={i}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 1 + i * 0.15 }}
-                    className={`p-6 rounded-xl bg-gradient-to-br ${card.color} border border-border backdrop-blur-sm hover:border-accent/40 transition-all group cursor-default`}
+                    transition={{ duration: 0.7, delay: card.delay, ease: 'easeOut' }}
+                    whileHover={{ y: -6, transition: { duration: 0.3 } }}
+                    className="relative p-6 rounded-xl bg-gradient-to-br border border-border/60 backdrop-blur-sm hover:border-accent/40 transition-all group cursor-default overflow-hidden"
+                    style={{ background: 'linear-gradient(135deg, rgba(0,194,255,0.08), rgba(0,149,255,0.03))' }}
                   >
-                    <div className="w-10 h-10 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center mb-3 group-hover:bg-accent/20 transition-all">
-                      <div className="w-4 h-4 rounded-sm bg-accent/60" />
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-accent/5 rounded-full blur-2xl group-hover:bg-accent/10 transition-all" />
+                    <div className="relative z-10">
+                      <div className="w-10 h-10 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center mb-3 group-hover:bg-accent/20 transition-all">
+                        <div className="w-4 h-4 rounded-sm bg-gradient-to-br from-accent to-highlight" />
+                      </div>
+                      <h3 className="text-white font-bold text-sm mb-0.5">{card.title}</h3>
+                      <p className="text-body/50 text-xs">{card.subtitle}</p>
                     </div>
-                    <h3 className="text-white font-bold text-sm">{card.title}</h3>
                   </motion.div>
                 ))}
               </div>

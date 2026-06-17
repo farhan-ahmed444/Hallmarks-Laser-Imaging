@@ -44,8 +44,12 @@ export default function QuoteCTA() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative py-24 overflow-hidden bg-primary">
-      <div className="absolute inset-0 bg-gradient-to-r from-accent/5 via-transparent to-accent/5" />
+    <section ref={sectionRef} className="relative py-28 overflow-hidden bg-primary">
+      <div className="absolute inset-0 bg-gradient-to-r from-accent/8 via-transparent to-accent/8" />
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-1/3 w-96 h-96 bg-accent/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 right-1/3 w-80 h-80 bg-highlight/5 rounded-full blur-[100px]" />
+      </div>
 
       <div className="absolute top-1/2 left-0 right-0 h-px">
         <div
@@ -58,6 +62,9 @@ export default function QuoteCTA() {
       <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-accent/20 to-transparent" />
       <div className="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-transparent via-accent/20 to-transparent" />
 
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+
       <div ref={contentRef} className="container-wide relative z-10 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -65,7 +72,7 @@ export default function QuoteCTA() {
           viewport={{ once: true }}
           className="max-w-3xl mx-auto"
         >
-          <span className="inline-block text-accent text-sm font-semibold tracking-[0.2em] uppercase mb-6 border border-accent/20 rounded-full px-4 py-1.5">
+          <span className="inline-block text-accent text-sm font-semibold tracking-[0.2em] uppercase mb-6 border border-accent/20 rounded-full px-5 py-2">
             Get Started Today
           </span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight">

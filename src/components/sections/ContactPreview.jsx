@@ -11,7 +11,7 @@ const contactInfo = [
   { icon: HiPhone, label: 'Phone', value: '+1 (800) 555-LASER', href: 'tel:+18005555273' },
   { icon: HiMail, label: 'Email', value: 'info@hallmarkslaser.com', href: 'mailto:info@hallmarkslaser.com' },
   { icon: HiLocationMarker, label: 'Address', value: '1234 Industrial Blvd\nDetroit, MI 48201', href: '#' },
-  { icon: HiClock, label: 'Business Hours', value: 'Mon-Fri: 7AM-6PM\nSat: 8AM-12PM' },
+  { icon: HiClock, label: 'Business Hours', value: 'Mon-Fri: 7AM–6PM\nSat: 8AM–12PM', href: '#' },
 ];
 
 export default function ContactPreview() {
@@ -33,7 +33,8 @@ export default function ContactPreview() {
 
   return (
     <section className="section-padding bg-bg-dark relative overflow-hidden">
-      <div className="container-wide">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,_rgba(0,194,255,0.02)_0%,_transparent_60%)]" />
+      <div className="container-wide relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <RevealAnimation>
@@ -42,11 +43,11 @@ export default function ContactPreview() {
                 Get In <span className="text-gradient">Touch</span>
               </h2>
               <p className="text-body text-base leading-relaxed mb-10">
-                Ready to discuss your project? Our team of experts is here to help you find the perfect identification solution.
+                Ready to discuss your project? Our team of experts is here to help you find the perfect identification solution for your specific needs.
               </p>
             </RevealAnimation>
 
-            <div className="space-y-6">
+            <div className="space-y-5">
               {contactInfo.map((item, i) => (
                 <motion.a
                   key={i}
@@ -55,13 +56,13 @@ export default function ContactPreview() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="flex items-start gap-4 p-4 rounded-xl hover:bg-secondary/30 transition-all group"
+                  className="flex items-start gap-4 p-5 rounded-xl hover:bg-secondary/30 transition-all group border border-transparent hover:border-border/40"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0 group-hover:bg-accent/20 transition-all">
+                  <div className="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0 group-hover:bg-accent/20 group-hover:scale-110 transition-all">
                     <item.icon className="w-5 h-5 text-accent" />
                   </div>
                   <div>
-                    <span className="text-body/60 text-xs font-semibold tracking-wider uppercase">{item.label}</span>
+                    <span className="text-body/50 text-xs font-semibold tracking-wider uppercase">{item.label}</span>
                     <p className="text-white font-semibold text-sm mt-0.5 whitespace-pre-line">{item.value}</p>
                   </div>
                 </motion.a>
@@ -70,20 +71,23 @@ export default function ContactPreview() {
           </div>
 
           <RevealAnimation direction="right">
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border">
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border group">
               <div
                 ref={mapRef}
                 className="w-full h-full bg-cover bg-center"
                 style={{ backgroundImage: "url('https://images.unsplash.com/photo-1569336415962-a4bd9b03cdc7?w=800&q=80')" }}
               />
-              <div className="absolute inset-0 bg-primary/40" />
+              <div className="absolute inset-0 bg-primary/60 group-hover:bg-primary/40 transition-all duration-500" />
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
                   <div className="w-16 h-16 rounded-full bg-accent/20 border-2 border-accent flex items-center justify-center mx-auto mb-4 animate-pulse">
                     <HiLocationMarker className="w-7 h-7 text-accent" />
                   </div>
-                  <p className="text-white font-bold">Visit Our Facility</p>
-                  <p className="text-body/60 text-sm">Detroit Manufacturing Hub</p>
+                  <p className="text-white font-bold text-lg">Visit Our Facility</p>
+                  <p className="text-body/70 text-sm">Detroit Manufacturing Hub</p>
+                  <span className="inline-block mt-4 text-accent text-xs font-semibold tracking-wider uppercase border border-accent/30 rounded-full px-4 py-1.5">
+                    Schedule a Tour
+                  </span>
                 </div>
               </div>
             </div>
