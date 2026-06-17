@@ -172,12 +172,12 @@
   .container-wide {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding-inline: 20px;
   }
 
   .container-narrow {
     max-width: 1080px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding-inline: 20px;
   }
 }
