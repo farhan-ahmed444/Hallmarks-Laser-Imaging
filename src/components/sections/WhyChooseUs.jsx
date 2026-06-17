@@ -1,10 +1,5 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { HiBadgeCheck, HiCog, HiShieldCheck, HiClock, HiStar, HiChartBar } from 'react-icons/hi';
 import SectionTitle from '../ui/SectionTitle';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const featuresData = [
   { title: 'Precision Manufacturing', description: 'Advanced laser systems with micron-level accuracy for every project, ensuring consistent quality across all deliveries.', icon: HiBadgeCheck },
@@ -16,46 +11,12 @@ const featuresData = [
 ];
 
 export default function WhyChooseUs() {
-  const featuresRef = useRef(null);
-  const imageRef = useRef(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(featuresRef.current.children, {
-        x: -40,
-        opacity: 0,
-        duration: 0.7,
-        stagger: 0.12,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: featuresRef.current,
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-        },
-      });
-
-      gsap.from(imageRef.current, {
-        scale: 0.9,
-        opacity: 0,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: imageRef.current,
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-        },
-      });
-    });
-
-    return () => ctx.revert();
-  }, []);
-
   return (
     <section className="section-padding bg-section-alt relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_right,_rgba(0,194,255,0.03)_0%,_transparent_60%)]" />
       <div className="container-wide">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div ref={imageRef} className="relative">
+          <div className="relative">
             <div className="absolute -inset-4 bg-gradient-to-br from-accent/20 to-transparent rounded-3xl blur-3xl" />
             <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-border">
               <div
@@ -81,7 +42,7 @@ export default function WhyChooseUs() {
               center={false}
             />
 
-            <div ref={featuresRef} className="space-y-4 mt-8">
+            <div className="space-y-4 mt-8">
               {featuresData.map((feature, i) => {
                 const Icon = feature.icon;
                 return (

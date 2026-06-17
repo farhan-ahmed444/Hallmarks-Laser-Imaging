@@ -1,11 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { HiPhone, HiMail, HiLocationMarker, HiClock } from 'react-icons/hi';
 import RevealAnimation from '../ui/RevealAnimation';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const contactInfo = [
   { icon: HiPhone, label: 'Phone', value: '+1 (800) 555-LASER', href: 'tel:+18005555273' },

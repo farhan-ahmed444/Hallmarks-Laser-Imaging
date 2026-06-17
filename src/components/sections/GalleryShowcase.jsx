@@ -1,11 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { HiX, HiSearch } from 'react-icons/hi';
 import SectionTitle from '../ui/SectionTitle';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const galleryData = [
   { id: 1, category: 'Laser Marking', title: 'Precision Laser Engraving' },
@@ -34,30 +30,10 @@ const galleryImages = [
 export default function GalleryShowcase() {
   const [activeFilter, setActiveFilter] = useState('All');
   const [lightbox, setLightbox] = useState(null);
-  const gridRef = useRef(null);
 
   const filtered = activeFilter === 'All'
     ? galleryData
     : galleryData.filter((g) => g.category === activeFilter);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(gridRef.current.children, {
-        y: 40,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.08,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: gridRef.current,
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-        },
-      });
-    });
-
-    return () => ctx.revert();
-  }, [activeFilter]);
 
   return (
     <section className="section-padding bg-section-alt relative overflow-hidden">
@@ -84,7 +60,7 @@ export default function GalleryShowcase() {
           ))}
         </div>
 
-        <div ref={gridRef} className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
           <AnimatePresence mode="wait">
             {filtered.map((item, i) => (
               <motion.div

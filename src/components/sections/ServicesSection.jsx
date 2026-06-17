@@ -1,12 +1,7 @@
-import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { HiArrowRight, HiSparkles, HiTag, HiShieldCheck, HiClipboardList, HiCog, HiCube } from 'react-icons/hi';
 import SectionTitle from '../ui/SectionTitle';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const iconMap = [
   HiSparkles,
@@ -57,27 +52,6 @@ const servicesData = [
 ];
 
 export default function ServicesSection() {
-  const cardsRef = useRef(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(cardsRef.current.children, {
-        y: 60,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: cardsRef.current,
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-        },
-      });
-    });
-
-    return () => ctx.revert();
-  }, []);
-
   return (
     <section className="section-padding bg-bg-dark relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_rgba(0,194,255,0.03)_0%,_transparent_70%)]" />
@@ -87,7 +61,7 @@ export default function ServicesSection() {
           subtitle="Comprehensive laser marking, engraving, and identification services engineered for the most demanding industrial applications."
         />
 
-        <div ref={cardsRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {servicesData.map((service, i) => {
             const Icon = iconMap[i];
             return (

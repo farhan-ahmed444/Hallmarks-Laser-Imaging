@@ -1,13 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { HiArrowRight } from 'react-icons/hi';
 import SectionTitle from '../ui/SectionTitle';
 import Card3D from '../ui/Card3D';
 import { productsData } from '../../data';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const categories = ['All', 'Nameplates', 'Labels', 'Tags', 'Panels'];
 
@@ -22,30 +18,10 @@ const productImages = [
 
 export default function FeaturedProducts() {
   const [activeCategory, setActiveCategory] = useState('All');
-  const productsRef = useRef(null);
 
   const filtered = activeCategory === 'All'
     ? productsData
     : productsData.filter(p => p.category === activeCategory);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(productsRef.current.children, {
-        y: 60,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: productsRef.current,
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-        },
-      });
-    });
-
-    return () => ctx.revert();
-  }, [activeCategory]);
 
   return (
     <section className="section-padding bg-bg-dark relative overflow-hidden">
@@ -71,7 +47,7 @@ export default function FeaturedProducts() {
           ))}
         </div>
 
-        <div ref={productsRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatePresence mode="wait">
             {filtered.map((product, i) => (
               <motion.div
