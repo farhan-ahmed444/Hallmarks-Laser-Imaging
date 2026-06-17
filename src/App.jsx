@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 import Lenis from 'lenis';
+import CustomCursor from './components/ui/CustomCursor';
 import Layout from './components/layout/Layout';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -40,6 +41,7 @@ function LenisProvider({ children }) {
 export default function App() {
   return (
     <Router>
+      <CustomCursor />
       <LenisProvider>
         <Routes>
           <Route path="/" element={<Layout />}>
